@@ -7,14 +7,14 @@ include('version.php');
 
 
 // TITULO DE LA PAGINA
-$page_header = 'InstalaciÛn de la Intranet';
+$page_header = 'Instalaci√≥n de la Intranet';
 
 
-// FUNCIONES Y VARIABLES NECESARIAS PARA LA INSTALACI”N
+// FUNCIONES Y VARIABLES NECESARIAS PARA LA INSTALACI√ìN
 $config_existe = 0;
 $doc_dir = substr(__DIR__, 0, -6).'varios/publico/';
 
-$provincias = array('AlmerÌa', 'C·diz', 'CÛrdoba', 'Granada', 'Huelva', 'JaÈn', 'M·laga', 'Sevilla');
+$provincias = array('Almer√≠a', 'C√°diz', 'C√≥rdoba', 'Granada', 'Huelva', 'Ja√©n', 'M√°laga', 'Sevilla');
 
 function crear_archivo($filename)
 {
@@ -134,17 +134,17 @@ if (isset($_POST['instalar']))
 	(isset($_POST['mod_transporte_escolar'])) ? $modulo_transporte_escolar = 1 : $modulo_transporte_escolar = 0;
 	
 	
-	// CREACI”N DEL ARCHIVO DE CONFIGURACI”N
+	// CREACI√ìN DEL ARCHIVO DE CONFIGURACI√ìN
 	if($file = fopen(CONFIG_FILE, 'w+'))
 	{
 		fwrite($file, "<?php \r\n");
 		
-		fwrite($file, "\r\n// CONFIGURACI”N INTRANET\r\n");
+		fwrite($file, "\r\n// CONFIGURACI√ìN INTRANET\r\n");
 		fwrite($file, "\$config['dominio']\t\t\t= '$dominio_centro';\r\n");
 		fwrite($file, "\$config['forzar_ssl']\t\t= $forzar_ssl;\r\n");
 		fwrite($file, "\$config['mantenimiento']\t= 0;\r\n");
 		
-		fwrite($file, "\r\n// INFORMACI”N DEL CENTRO\r\n");
+		fwrite($file, "\r\n// INFORMACI√ìN DEL CENTRO\r\n");
 		fwrite($file, "\$config['centro_denominacion']\t= '$nombre_centro';\r\n");
 		fwrite($file, "\$config['centro_codigo']\t\t= '$codigo_centro';\r\n");
 		fwrite($file, "\$config['centro_email']\t\t\t= '$email_centro';\r\n");
@@ -171,43 +171,43 @@ if (isset($_POST['instalar']))
 		fwrite($file, "\$config['curso_inicio']\t= '$fecha_inicio';\r\n");
 		fwrite($file, "\$config['curso_fin']\t= '$fecha_final';\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: BIBLIOTECA\r\n");
+		fwrite($file, "\r\n// M√ìDULO: BIBLIOTECA\r\n");
 		fwrite($file, "\$config['mod_biblioteca']\t\t= $modulo_biblioteca;\r\n");
 		fwrite($file, "\$config['mod_biblioteca_web']\t= '$modulo_biblioteca_web';\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: BILING‹E\r\n");
+		fwrite($file, "\r\n// M√ìDULO: BILING√úE\r\n");
 		fwrite($file, "\$config['mod_bilingue']\t\t\t= $modulo_bilingue;\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: CENTRO TIC\r\n");
+		fwrite($file, "\r\n// M√ìDULO: CENTRO TIC\r\n");
 		fwrite($file, "\$config['mod_centrotic']\t\t= $modulo_centrotic;\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: DOCUMENTOS\r\n");
+		fwrite($file, "\r\n// M√ìDULO: DOCUMENTOS\r\n");
 		fwrite($file, "\$config['mod_documentos']\t\t= $modulo_documentos;\r\n");
 		fwrite($file, "\$config['mod_documentos_dir']\t= '$modulo_documentos_dir';\r\n");
 		fwrite($file, "\$config['mod_documentos_biblioteca']\t= '$mod_documentos_biblioteca';\r\n");
 		fwrite($file, "\$config['mod_documentos_recursos']\t= '$mod_documentos_recursos';\r\n");
 		fwrite($file, "\$config['mod_documentos_departamentos']\t= '$mod_documentos_departamentos';\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: SMS\r\n");
+		fwrite($file, "\r\n// M√ìDULO: SMS\r\n");
 		fwrite($file, "\$config['mod_sms']\t\t\t\t= $modulo_sms;\r\n");
 		fwrite($file, "\$config['mod_sms_id']\t\t\t= '$modulo_sms_id';\r\n");
 		fwrite($file, "\$config['mod_sms_user']\t\t\t= '$modulo_sms_user';\r\n");
 		fwrite($file, "\$config['mod_sms_pass']\t\t\t= '$modulo_sms_pass';\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: NOTIFICACIONES\r\n");
+		fwrite($file, "\r\n// M√ìDULO: NOTIFICACIONES\r\n");
 		fwrite($file, "\$config['mod_notificaciones']\t= $modulo_notificaciones;\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: FALTAS DE ASISTENCIA\r\n");
+		fwrite($file, "\r\n// M√ìDULO: FALTAS DE ASISTENCIA\r\n");
 		fwrite($file, "\$config['mod_asistencia']\t\t= $modulo_asistencia;\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: HORARIOS\r\n");
+		fwrite($file, "\r\n// M√ìDULO: HORARIOS\r\n");
 		fwrite($file, "\$config['mod_horarios']\t\t\t= $modulo_horarios;\r\n");
 		
-		fwrite($file, "\r\n// M”DULO: MATRICULACI”N\r\n");
+		fwrite($file, "\r\n// M√ìDULO: MATRICULACI√ìN\r\n");
 		fwrite($file, "\$config['mod_matriculacion']\t\t= $modulo_matriculacion;\r\n");
 		fwrite($file, "\$config['mod_transporte_escolar']\t= $modulo_transporte_escolar;\r\n");
 		
-		fwrite($file, "\r\n\r\n// Fin del archivo de configuraciÛn");
+		fwrite($file, "\r\n\r\n// Fin del archivo de configuraci√≥n");
 		
 		$config_existe = 1;
 		fclose($file);
@@ -246,7 +246,7 @@ if (isset($_POST['instalar']))
 			$pass_admin = generador_password(9);
 			$pass_sha1	= sha1($pass_admin);
 			
-			// COMPROBAMOS SI SE TRATA DE UNA ACTUALIZACI”N DE LA APLICACI”N
+			// COMPROBAMOS SI SE TRATA DE UNA ACTUALIZACI√ìN DE LA APLICACI√ìN
 			if(isset($_GET['update']) && $_GET['update']) {
 				mysqli_select_db($db_con, $db_name);
 				
@@ -259,16 +259,16 @@ if (isset($_POST['instalar']))
 				mysqli_query($db_con, "UPDATE reg_intranet SET profesor='Administrador' WHERE profesor='admin'");
 			}
 			else {
-				// CREACI”N DE LA BASE DE DATOS
+				// CREACI√ìN DE LA BASE DE DATOS
 				mysqli_query($db_con, "CREATE DATABASE IF NOT EXISTS `$db_name` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci");
 				mysqli_select_db($db_con, $db_name);
 				
-				// IMPORTACI”N DE TABLAS
+				// IMPORTACI√ìN DE TABLAS
 				$sql = file_get_contents('tablas.sql');
 				mysqli_multi_query($db_con, $sql);
 				while (mysqli_next_result($db_con));
 				
-				// A—ADIENDO USUARIO ADMINISTRADOR
+				// A√ëADIENDO USUARIO ADMINISTRADOR
 				mysqli_query($db_con, "INSERT INTO `c_profes` (`id`, `pass`, `PROFESOR`, `dni`, `idea`, `correo`, `estado`) VALUES 
 				(1, '$pass_sha1', 'Administrador', '$pass_admin', 'admin', NULL, 0)");
 				
@@ -328,7 +328,7 @@ if (isset($_POST['instalar']))
 	    <div class="modal-content">
 	      <div class="modal-body">
 	      	<br>
-	        <p class="lead text-center">Est·s utilizando una versiÛn de Internet Explorer demasiado antigua. <br>Actualiza tu navegador o c·mbiate a <a href="http://www.google.com/chrome/">Chrome</a> o <a href="https://www.mozilla.org/es-ES/firefox/new/">Firefox</a>.</p>
+	        <p class="lead text-center">Est√°s utilizando una versi√≥n de Internet Explorer demasiado antigua. <br>Actualiza tu navegador o c√°mbiate a <a href="http://www.google.com/chrome/">Chrome</a> o <a href="https://www.mozilla.org/es-ES/firefox/new/">Firefox</a>.</p>
 	        <br>
 	      </div>
 	    </div><!-- /.modal-content -->
@@ -357,14 +357,14 @@ if (isset($_POST['instalar']))
 				    <div role="tabpanel" class="tab-pane active" id="terminos">
 				    
 				    	<div class="well">
-				    		<h3>TÈrminos y condiciones de uso</h3>
+				    		<h3>T√©rminos y condiciones de uso</h3>
 				    		<br>
 				    		<object type="text/html" data="../LICENSE.md" style="width: 100%; min-height: 300px; border: 1px solid #dedede; background-color: #fff;"></object>
 				    		
 				    		<div class="checkbox">
 				    			<label for="terms-accept">
 				    				<input type="checkbox" name="terms-accept" id="terms-accept" value="YES">
-				    				Acepto los tÈrminos y condiciones de uso de esta aplicaciÛn.
+				    				Acepto los t√©rminos y condiciones de uso de esta aplicaci√≥n.
 				    			</label>
 				    		</div>
 				    		
@@ -378,19 +378,19 @@ if (isset($_POST['instalar']))
 				    
 				    </div>
 				    
-				    <!-- COMPROBACI”N CONFIGURACI”N PHP -->
+				    <!-- COMPROBACI√ìN CONFIGURACI√ìN PHP -->
 				    <div role="tabpanel" class="tab-pane" id="php-config">
 				    
 				    	<div class="well">
-				    		<h3>ConfiguraciÛn de PHP</h3>
+				    		<h3>Configuraci√≥n de PHP</h3>
 				    		<br>
 				    		
-				    		<p class="text-center text-info">Para una mejor experiencia en el uso de la Intranet, es recomendable que las variables de configuraciÛn de PHP estÈn marcadas en verde. En el caso de que aparezca marcada en rojo, modifique la configuraciÛn en <em>php.ini</em> o pÛngase en contacto con su proveedor de alojamiento Web y vuelva a iniciar esta instalaciÛn.</p>
+				    		<p class="text-center text-info">Para una mejor experiencia en el uso de la Intranet, es recomendable que las variables de configuraci√≥n de PHP est√©n marcadas en verde. En el caso de que aparezca marcada en rojo, modifique la configuraci√≥n en <em>php.ini</em> o p√≥ngase en contacto con su proveedor de alojamiento Web y vuelva a iniciar esta instalaci√≥n.</p>
 				    		<br>
 				    		
 				    		<dl class="dl-horizontal">
-				    		  <dt>VersiÛn de PHP</dt>
-				    		  <dd><?php echo (phpversion() < '5.3.0') ? '<span class="text-danger">VersiÛn actual: '.phpversion().'. Actualice a la versiÛn 5.3.0 o superior</span>' : '<span class="text-success">'.phpversion().'</span>'; ?></dd>
+				    		  <dt>Versi√≥n de PHP</dt>
+				    		  <dd><?php echo (phpversion() < '5.3.0') ? '<span class="text-danger">Versi√≥n actual: '.phpversion().'. Actualice a la versi√≥n 5.3.0 o superior</span>' : '<span class="text-success">'.phpversion().'</span>'; ?></dd>
 				    		</dl>
 				    		
 				    		<dl class="dl-horizontal">
@@ -405,12 +405,12 @@ if (isset($_POST['instalar']))
 				    		
 				    		<dl class="dl-horizontal">
 				    		  <dt>Upload max filesize</dt>
-				    		  <dd><?php echo (substr(ini_get('upload_max_filesize'),0,-1) < '16') ? '<span class="text-danger">Valor actual: '.ini_get('upload_max_filesize').'B. Aumente el tamaÒo m·ximo de archivos a 16 MB o superior.</span>' : '<span class="text-success">'.ini_get('upload_max_filesize').'B</span>'; ?></dd>
+				    		  <dd><?php echo (substr(ini_get('upload_max_filesize'),0,-1) < '16') ? '<span class="text-danger">Valor actual: '.ini_get('upload_max_filesize').'B. Aumente el tama√±o m√°ximo de archivos a 16 MB o superior.</span>' : '<span class="text-success">'.ini_get('upload_max_filesize').'B</span>'; ?></dd>
 				    		</dl>
 				    		
 				    		<dl class="dl-horizontal">
 				    		  <dt>Memory limit</dt>
-				    		  <dd><?php echo (substr(ini_get('memory_limit'),0,-1) < '32') ? '<span class="text-danger">Valor actual: '.ini_get('memory_limit').'B. Aumente el tamaÒo de memoria a 32 MB o superior.</span>' : '<span class="text-success">'.ini_get('memory_limit').'B</span>'; ?></dd>
+				    		  <dd><?php echo (substr(ini_get('memory_limit'),0,-1) < '32') ? '<span class="text-danger">Valor actual: '.ini_get('memory_limit').'B. Aumente el tama√±o de memoria a 32 MB o superior.</span>' : '<span class="text-success">'.ini_get('memory_limit').'B</span>'; ?></dd>
 				    		</dl>
 				    		
 				    		<dl class="dl-horizontal">
@@ -437,11 +437,11 @@ if (isset($_POST['instalar']))
 				    </div>
 				    
 				    
-				    <!-- INFORMACI”N CENTRO EDUCATIVO -->
+				    <!-- INFORMACI√ìN CENTRO EDUCATIVO -->
 				    <div role="tabpanel" class="tab-pane" id="informacion">
 				    	
 				    	<div class="well">
-				    		<h3>InformaciÛn de su centro educativo</h3>
+				    		<h3>Informaci√≥n de su centro educativo</h3>
 				    		<br>
 				    		
 				    		<?php $tam_label = 3; ?>
@@ -454,41 +454,41 @@ if (isset($_POST['instalar']))
 				    		  <?php endif; ?>
 				    		  
 				    		  <div class="form-group">
-				    		    <label for="nombre_centro" class="col-sm-<?php echo $tam_label; ?> control-label">DenominaciÛn <span class="text-danger">*</span></label>
+				    		    <label for="nombre_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Denominaci√≥n <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="nombre_centro" name="nombre_centro" placeholder="I.E.S. Monterroso" data-error="La denominaciÛn del centro no es v·lida" required>
+				    		      <input type="text" class="form-control" id="nombre_centro" name="nombre_centro" placeholder="I.E.S. Monterroso" data-error="La denominaci√≥n del centro no es v√°lida" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
 				    		  
 				    		  <div class="form-group">
-				    		    <label for="codigo_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Centro cÛdigo <span class="text-danger">*</span></label>
+				    		    <label for="codigo_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Centro c√≥digo <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="codigo_centro" name="codigo_centro" placeholder="29002885" maxlength="8" data-minlength="8" data-error="El cÛdigo del centro no es v·lido" required>
+				    		      <input type="text" class="form-control" id="codigo_centro" name="codigo_centro" placeholder="29002885" maxlength="8" data-minlength="8" data-error="El c√≥digo del centro no es v√°lido" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
 				    		  
 				    		  <div class="form-group">
-				    		    <label for="email_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Correo electrÛnico <span class="text-danger">*</span></label>
+				    		    <label for="email_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Correo electr√≥nico <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="email" class="form-control" id="email_centro" name="email_centro" placeholder="29002885.edu@juntadeandalucia.es" data-error="La direcciÛn de correo electrÛnico no es v·lida" required>
+				    		      <input type="email" class="form-control" id="email_centro" name="email_centro" placeholder="29002885.edu@juntadeandalucia.es" data-error="La direcci√≥n de correo electr√≥nico no es v√°lida" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
 				    		  
 				    		  <div class="form-group">
-				    		    <label for="direccion_centro" class="col-sm-<?php echo $tam_label; ?> control-label">DirecciÛn postal <span class="text-danger">*</span></label>
+				    		    <label for="direccion_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Direcci√≥n postal <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="direccion_centro" name="direccion_centro" placeholder="Calle Santo Tom·s de Aquino, s/n" data-error="La direcciÛn postal no es v·lida" required>
+				    		      <input type="text" class="form-control" id="direccion_centro" name="direccion_centro" placeholder="Calle Santo Tom√°s de Aquino, s/n" data-error="La direcci√≥n postal no es v√°lida" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
 				    		  
 				    		  <div class="form-group">
-				    		    <label for="codpostal_centro" class="col-sm-<?php echo $tam_label; ?> control-label">CÛdigo postal <span class="text-danger">*</span></label>
+				    		    <label for="codpostal_centro" class="col-sm-<?php echo $tam_label; ?> control-label">C√≥digo postal <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="codpostal_centro" name="codpostal_centro" placeholder="29680" maxlength="5" data-minlength="5" data-error="El cÛdigo postal no es v·lido" required>
+				    		      <input type="text" class="form-control" id="codpostal_centro" name="codpostal_centro" placeholder="29680" maxlength="5" data-minlength="5" data-error="El c√≥digo postal no es v√°lido" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
@@ -496,7 +496,7 @@ if (isset($_POST['instalar']))
 				    		  <div class="form-group">
 				    		    <label for="localidad_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Localidad <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="localidad_centro" name="localidad_centro" placeholder="Estepona" data-error="La localidad no es v·lida" required>
+				    		      <input type="text" class="form-control" id="localidad_centro" name="localidad_centro" placeholder="Estepona" data-error="La localidad no es v√°lida" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
@@ -504,7 +504,7 @@ if (isset($_POST['instalar']))
 				    		  <div class="form-group">
 				    		    <label for="provincia_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Provincia <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <select class="form-control" id="provincia_centro" name="provincia_centro" data-error="La provincia no es v·lida" required>
+				    		      <select class="form-control" id="provincia_centro" name="provincia_centro" data-error="La provincia no es v√°lida" required>
 				    		      	<option value=""></option>
 				    		      	<?php foreach($provincias as $provincia): ?>
 				    		      	<option value="<?php echo $provincia; ?>"><?php echo $provincia; ?></option>
@@ -515,9 +515,9 @@ if (isset($_POST['instalar']))
 				    		  </div>
 				    		  
 				    		  <div class="form-group">
-				    		    <label for="telefono_centro" class="col-sm-<?php echo $tam_label; ?> control-label">TelÈfono <span class="text-danger">*</span></label>
+				    		    <label for="telefono_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Tel√©fono <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="tel" class="form-control" id="telefono_centro" name="telefono_centro" placeholder="952795802" maxlength="9" data-minlength="9" data-error="El tÈlefono no es v·lido" required>
+				    		      <input type="tel" class="form-control" id="telefono_centro" name="telefono_centro" placeholder="952795802" maxlength="9" data-minlength="9" data-error="El t√©lefono no es v√°lido" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
@@ -525,7 +525,7 @@ if (isset($_POST['instalar']))
 				    		  <div class="form-group">
 				    		    <label for="fax_centro" class="col-sm-<?php echo $tam_label; ?> control-label">Fax</label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="tel" class="form-control" id="fax_centro" name="fax_centro" placeholder="952795802" maxlength="9" data-minlength="9" data-error="El fax no es v·lido">
+				    		      <input type="tel" class="form-control" id="fax_centro" name="fax_centro" placeholder="952795802" maxlength="9" data-minlength="9" data-error="El fax no es v√°lido">
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
@@ -568,11 +568,11 @@ if (isset($_POST['instalar']))
 				    </div>
 				    
 				    
-				    <!-- CONFIGURACI”N DE LA BASE DE DATOS -->
+				    <!-- CONFIGURACI√ìN DE LA BASE DE DATOS -->
 				    <div role="tabpanel" class="tab-pane" id="base-datos">
 				    	
 				    	<div class="well">
-				    		<h3>ConfiguraciÛn de la base de datos</h3>
+				    		<h3>Configuraci√≥n de la base de datos</h3>
 				    		<br>
 				    		  
 				    		  <?php $tam_label = 3; ?>
@@ -581,7 +581,7 @@ if (isset($_POST['instalar']))
 				    		  <div class="form-group">
 				    		    <label for="db_host" class="col-sm-<?php echo $tam_label; ?> control-label">Servidor <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="db_host" name="db_host" placeholder="localhost" data-error="La direcciÛn servidor de base de datos no es v·lida" required>
+				    		      <input type="text" class="form-control" id="db_host" name="db_host" placeholder="localhost" data-error="La direcci√≥n servidor de base de datos no es v√°lida" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
@@ -589,7 +589,7 @@ if (isset($_POST['instalar']))
 				    		  <div class="form-group">
 				    		    <label for="db_name" class="col-sm-<?php echo $tam_label; ?> control-label">Base de datos <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="db_name" name="db_name" placeholder="intranet" data-error="El nombre de la base de datos no es v·lido" required>
+				    		      <input type="text" class="form-control" id="db_name" name="db_name" placeholder="intranet" data-error="El nombre de la base de datos no es v√°lido" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
@@ -597,15 +597,15 @@ if (isset($_POST['instalar']))
 				    		  <div class="form-group">
 				    		    <label for="db_user" class="col-sm-<?php echo $tam_label; ?> control-label">Usuario <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="text" class="form-control" id="db_user" name="db_user" data-error="El nombre de usuario de la base de datos no es v·lido" required>
+				    		      <input type="text" class="form-control" id="db_user" name="db_user" data-error="El nombre de usuario de la base de datos no es v√°lido" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
 				    		  
 				    		  <div class="form-group">
-				    		    <label for="db_pass" class="col-sm-<?php echo $tam_label; ?> control-label">ContraseÒa <span class="text-danger">*</span></label>
+				    		    <label for="db_pass" class="col-sm-<?php echo $tam_label; ?> control-label">Contrase√±a <span class="text-danger">*</span></label>
 				    		    <div class="col-sm-<?php echo $tam_control; ?>">
-				    		      <input type="password" class="form-control" id="db_pass" name="db_pass" data-error="La contraseÒa de la base de datos no es v·lido" required>
+				    		      <input type="password" class="form-control" id="db_pass" name="db_pass" data-error="La contrase√±a de la base de datos no es v√°lido" required>
 				    		      <div class="help-block with-errors"></div>
 				    		    </div>
 				    		  </div>
@@ -624,11 +624,11 @@ if (isset($_POST['instalar']))
 				    </div>
 				    
 				    
-				    <!-- INFORMACI”N CURSO ESCOLAR -->
+				    <!-- INFORMACI√ìN CURSO ESCOLAR -->
 				    <div role="tabpanel" class="tab-pane" id="curso-escolar">
 				    	
 				    	<div class="well">
-				    		<h3>InformaciÛn del curso escolar</h3>
+				    		<h3>Informaci√≥n del curso escolar</h3>
 				    		<br>
 				    		  
 				    		  <?php $tam_label = 3; ?>
@@ -671,31 +671,31 @@ if (isset($_POST['instalar']))
 				    	
 				    </div>
 				    
-				    <!-- SELECCI”N DE M”DULOS -->
+				    <!-- SELECCI√ìN DE M√ìDULOS -->
 				    <div role="tabpanel" class="tab-pane" id="modulos">
 				    	
 				    	<div id="wrap_modulos" class="well">
-				    		<h3>ConfiguraciÛn de mÛdulos</h3>
+				    		<h3>Configuraci√≥n de m√≥dulos</h3>
 								<br>
 	    		            
 				    		<div class="row">
 				    			<div class="col-sm-4" style="border-right: 3px solid #dce4ec; margin-right: -3px;">
 										<ul class="nav nav-pills nav-stacked" role="tablist">
 											<li class="active"><a href="#mod_biblioteca" aria-controls="mod_biblioteca" role="tab" data-toggle="tab">Biblioteca</a></li>
-											<li><a href="#mod_bilingue" aria-controls="mod_bilingue" role="tab" data-toggle="tab">Centro Biling¸e</a></li>
+											<li><a href="#mod_bilingue" aria-controls="mod_bilingue" role="tab" data-toggle="tab">Centro Biling√ºe</a></li>
 											<li><a href="#mod_centrotic" aria-controls="mod_centrotic" role="tab" data-toggle="tab">Centro TIC</a></li>
 											<li><a href="#mod_documentos" aria-controls="mod_documentos" role="tab" data-toggle="tab">Documentos</a></li>
-											<li><a href="#mod_sms" aria-controls="mod_sms" role="tab" data-toggle="tab">EnvÌo SMS</a></li>
+											<li><a href="#mod_sms" aria-controls="mod_sms" role="tab" data-toggle="tab">Env√≠o SMS</a></li>
 											<li><a href="#mod_notificaciones" aria-controls="mod_notificaciones" role="tab" data-toggle="tab">Notificaciones</a></li>
 											<li><a href="#mod_asistencia" aria-controls="mod_asistencia" role="tab" data-toggle="tab">Faltas de Asistencia</a></li>
 											<li><a href="#mod_horarios" aria-controls="mod_horarios" role="tab" data-toggle="tab">Horarios</a></li>
-											<li><a href="#mod_matriculacion" aria-controls="mod_matriculacion" role="tab" data-toggle="tab">MatriculaciÛn</a></li>
+											<li><a href="#mod_matriculacion" aria-controls="mod_matriculacion" role="tab" data-toggle="tab">Matriculaci√≥n</a></li>
 										</ul>
 									</div>
 								
 				    			<div class="tab-content col-sm-7" style="border-left: 3px solid #dce4ec; padding-left: 45px;">
 				    				
-				    				<!-- M”DULO: BIBLIOTECA -->
+				    				<!-- M√ìDULO: BIBLIOTECA -->
 				    			    <div role="tabpanel" class="tab-pane active" id="mod_biblioteca">
 				    			    	
 				    			    	<div class="form-group">
@@ -703,7 +703,7 @@ if (isset($_POST['instalar']))
 					    			    		<label>
 						    			    		<input type="checkbox" name="mod_biblioteca" value="1">
 						    			    		<strong>Biblioteca</strong>
-						    			    		<p class="help-block">Si el Centro dispone de Biblioteca que funciona con Abies, y cuenta con un equipo de profesores dedicados a su mantenimiento, este mÛdulo permite consultar e importar los fondos, lectores y prÈstamos, asÌ como hacer un seguimiento de los alumnos morosos. TambiÈn incorpora el cÛdigo de barras generado por Abies al Carnet del Alumno para facilitar la lectura por parte del scanner de la Biblioteca.</p>
+						    			    		<p class="help-block">Si el Centro dispone de Biblioteca que funciona con Abies, y cuenta con un equipo de profesores dedicados a su mantenimiento, este m√≥dulo permite consultar e importar los fondos, lectores y pr√©stamos, as√≠ como hacer un seguimiento de los alumnos morosos. Tambi√©n incorpora el c√≥digo de barras generado por Abies al Carnet del Alumno para facilitar la lectura por parte del scanner de la Biblioteca.</p>
 						    			    	</label>
 					    			    	</div>
 					    			    </div>
@@ -711,7 +711,7 @@ if (isset($_POST['instalar']))
 				    			    	<br>
 				    			    	
 				    			    	<div class="form-group">
-				    			    		<label for="mod_biblioteca_web">P·gina web de la Biblioteca</label>
+				    			    		<label for="mod_biblioteca_web">P√°gina web de la Biblioteca</label>
 				    			    		<div class="input-group">
 			    			    		      <div class="input-group-addon">http://</div>
 			    			    		      <input type="text" class="form-control" id="mod_biblioteca_web" name="mod_biblioteca_web" placeholder="iesmonterroso.org/biblioteca/">
@@ -721,15 +721,15 @@ if (isset($_POST['instalar']))
 				    			    </div>
 				    			    
 				    			    
-				    			    <!-- M”DULO: CENTRO BILING‹E -->
+				    			    <!-- M√ìDULO: CENTRO BILING√úE -->
 				    			    <div role="tabpanel" class="tab-pane" id="mod_bilingue">
 				    			    	
 				    			    	<div class="form-group">
 					    			    	<div class="checkbox">
 					    			    		<label>
 						    			    		<input type="checkbox" name="mod_bilingue" value="1">
-						    			    		<strong>Centro Biling¸e</strong>
-						    			    		<p class="help-block">Activa caracterÌsticas para los Centros Biling¸es, como el envÌo de mensajes a los profesores que pertenecen al programa biling¸e.</p>
+						    			    		<strong>Centro Biling√ºe</strong>
+						    			    		<p class="help-block">Activa caracter√≠sticas para los Centros Biling√ºes, como el env√≠o de mensajes a los profesores que pertenecen al programa biling√ºe.</p>
 						    			    	</label>
 					    			    	</div>
 					    			    </div>
@@ -737,7 +737,7 @@ if (isset($_POST['instalar']))
 				    			    </div>
 				    			    
 				    			    
-				    			    <!-- M”DULO: CENTRO TIC -->
+				    			    <!-- M√ìDULO: CENTRO TIC -->
 				    			    <div role="tabpanel" class="tab-pane" id="mod_centrotic">
 				    			    	
 				    			    	<div class="form-group">
@@ -753,7 +753,7 @@ if (isset($_POST['instalar']))
 				    			    </div>
 				    			    
 				    			    
-				    			    <!-- M”DULO: DOCUMENTOS --> 
+				    			    <!-- M√ìDULO: DOCUMENTOS --> 
 				    			    <div role="tabpanel" class="tab-pane" id="mod_documentos">
 				    			    	
 				    			    	<div class="form-group">
@@ -761,13 +761,13 @@ if (isset($_POST['instalar']))
 					    			    		<label>
 					    			    			<input type="checkbox" name="mod_documentos" value="1" checked>
 					    			    			<strong>Documentos</strong>
-					    			    			<p class="help-block">Directorio en el Servidor local donde tenemos documentos p˙blicos que queremos administrar (visualizar, eliminar, subir, compartir, etc.) con la Intranet.</p>
+					    			    			<p class="help-block">Directorio en el Servidor local donde tenemos documentos p√∫blicos que queremos administrar (visualizar, eliminar, subir, compartir, etc.) con la Intranet.</p>
 					    			    		</label>
 					    			    	</div>
 					    			    </div>
 				    			    				    			    	
 				    			    	<div class="form-group">
-				    			    		<label for="mod_documentos_dir">Directorio p˙blico</label>
+				    			    		<label for="mod_documentos_dir">Directorio p√∫blico</label>
 				    			    	    <input type="text" class="form-control" id="mod_documentos_dir" name="mod_documentos_dir" value="<?php echo $doc_dir; ?>">
 				    			    	</div>
 				    			    	
@@ -775,7 +775,7 @@ if (isset($_POST['instalar']))
 				    			    		<label>
 				    			    			<input type="checkbox" name="mod_documentos_biblioteca" value="1">
 				    			    			<strong>Biblioteca</strong>
-				    			    			<p class="help-block">Si hemos activado el mÛdulo de <strong>Biblioteca</strong>, crea una carpeta donde el personal de la Biblioteca puede subir y compartir documentos de interÈs.</p>
+				    			    			<p class="help-block">Si hemos activado el m√≥dulo de <strong>Biblioteca</strong>, crea una carpeta donde el personal de la Biblioteca puede subir y compartir documentos de inter√©s.</p>
 				    			    		</label>
 				    			    	</div>
 				    			    	
@@ -783,7 +783,7 @@ if (isset($_POST['instalar']))
 				    			    		<label>
 				    			    			<input type="checkbox" name="mod_documentos_recursos" value="1">
 				    			    			<strong>Recursos educativos</strong>
-				    			    			<p class="help-block">Crear· una carpeta <strong>Recursos</strong>, con el nombre de cada Grupo de Alumnos en el que los miembros de un Equipo Educativo pueden subir archivos visibles para Padres y Alumnos en <u>Acceso para Alumnos</u> de la <em>P·gina del Centro</em>.</p>
+				    			    			<p class="help-block">Crear√° una carpeta <strong>Recursos</strong>, con el nombre de cada Grupo de Alumnos en el que los miembros de un Equipo Educativo pueden subir archivos visibles para Padres y Alumnos en <u>Acceso para Alumnos</u> de la <em>P√°gina del Centro</em>.</p>
 				    			    		</label>
 				    			    	</div>
 				    			    	
@@ -791,30 +791,30 @@ if (isset($_POST['instalar']))
 				    			    		<label>
 				    			    			<input type="checkbox" name="mod_documentos_departamentos" value="1">
 				    			    			<strong>Departamentos</strong>
-				    			    			<p class="help-block">Crear· una carpeta para los Departamentos del Centro donde estos pueden colocar documentos importantes y p˙blicos (Programaciones, etc.) visibles desde la <em>P·gina del Centro</em>.</p>
+				    			    			<p class="help-block">Crear√° una carpeta para los Departamentos del Centro donde estos pueden colocar documentos importantes y p√∫blicos (Programaciones, etc.) visibles desde la <em>P√°gina del Centro</em>.</p>
 				    			    		</label>
 				    			    	</div>
 				    			    	
 				    			    </div>
 				    			    
 				    			    
-				    			    <!-- M”DULO: ENVÕO DE SMS -->
+				    			    <!-- M√ìDULO: ENV√çO DE SMS -->
 				    			    <div role="tabpanel" class="tab-pane" id="mod_sms">
 				    			    	
 				    			    	<div class="form-group">
 					    			    	<div class="checkbox">
 					    			    		<label>
 					    			    			<input type="checkbox" name="mod_sms" value="1">
-					    			    			<strong>EnvÌo de SMS</strong>
-					    			    			<p class="help-block">Pone en funcionamiento el envÌo de SMS en distintos lugares de la Intranet (Problemas de convivencia, faltas de asistencia, etc.). La aplicaciÛn est· preparada para trabajar con la API de <a href="http://www.trendoo.es/" target="_blank">Trendoo</a>.</p>
+					    			    			<strong>Env√≠o de SMS</strong>
+					    			    			<p class="help-block">Pone en funcionamiento el env√≠o de SMS en distintos lugares de la Intranet (Problemas de convivencia, faltas de asistencia, etc.). La aplicaci√≥n est√° preparada para trabajar con la API de <a href="http://www.trendoo.es/" target="_blank">Trendoo</a>.</p>
 					    			    		</label>
 					    			    	</div>
 					    			    </div>
 				    			    	
 				    			    	<div class="form-group">
-				    			    		<label for="mod_sms_id">Nombre de identificaciÛn (<abbr title="Transmission Path Originating Address">TPOA</abbr>)</label>
+				    			    		<label for="mod_sms_id">Nombre de identificaci√≥n (<abbr title="Transmission Path Originating Address">TPOA</abbr>)</label>
 				    			    	    <input type="text" class="form-control" id="mod_sms_id" name="mod_sms_id" placeholder="P. ej. IMonterroso" maxlength="11">
-				    			    	    <p class="help-block">11 caracteres como m·ximo.</p>
+				    			    	    <p class="help-block">11 caracteres como m√°ximo.</p>
 				    			    	</div>
 				    			    	
 				    			    	<div class="form-group">
@@ -823,13 +823,13 @@ if (isset($_POST['instalar']))
 				    			    	</div>
 				    			    	
 				    			    	<div class="form-group">
-				    			    		<label for="mod_sms_pass">ContraseÒa</label>
+				    			    		<label for="mod_sms_pass">Contrase√±a</label>
 				    			    	    <input type="password" class="form-control" id="mod_sms_pass" name="mod_sms_pass">
 				    			    	</div>
 				    			    	
 				    			    </div>
 				    			    
-				    			    <!-- M”DULO: NOTIFICACIONES -->
+				    			    <!-- M√ìDULO: NOTIFICACIONES -->
 				    			    <div role="tabpanel" class="tab-pane" id="mod_notificaciones">
 				    			    	
 				    			    	<div class="form-group">
@@ -837,7 +837,7 @@ if (isset($_POST['instalar']))
 				    			        		<label>
 				    			        			<input type="checkbox" name="mod_notificaciones" value="1">
 				    			        			<strong>Notificar a los profesores con tareas pendientes</strong>
-				    			        			<p class="help-block">Pone en funcionamiento el envÌo de SMS o correo electrÛnico a los profesores que no hayan accedido a la aplicaciÛn hace m·s de 4 dÌas o tengan tareas pendientes: m·s de 25 mensajes sin leer, informes de tareas o tutorÌa sin rellenar.</p>
+				    			        			<p class="help-block">Pone en funcionamiento el env√≠o de SMS o correo electr√≥nico a los profesores que no hayan accedido a la aplicaci√≥n hace m√°s de 4 d√≠as o tengan tareas pendientes: m√°s de 25 mensajes sin leer, informes de tareas o tutor√≠a sin rellenar.</p>
 				    			        		</label>
 				    			        	</div>
 				    			        </div>
@@ -845,7 +845,7 @@ if (isset($_POST['instalar']))
 				    			    </div>
 				    			    
 				    			    
-				    			    <!-- M”DULO: FALTAS DE ASISTENCIA -->
+				    			    <!-- M√ìDULO: FALTAS DE ASISTENCIA -->
 				    			    <div role="tabpanel" class="tab-pane" id="mod_asistencia">
 				    			    	
 				    			    	<div class="form-group">
@@ -853,17 +853,17 @@ if (isset($_POST['instalar']))
 					    			    		<label>
 					    			    			<input type="checkbox" id="check_asistencia" name="mod_asistencia" value="1">
 					    			    			<strong>Faltas de Asistencia</strong>
-					    			    			<p class="help-block">El mÛdulo de Faltas gestiona las asistencia de los alumnos. Permite registrar las ausencias diarias, al modo de <em>iSeneca</em>), que luego podremos gestionar (Consultar, Justificar, crear Informes, enviar SMS, etc.) y subir finalmente a SÈneca. <br>O bien podemos descargar las faltas desde SÈneca para utilizar los mÛdulos de la aplicaciÛn basados en faltas de asistencia (Informes de alumnos, TutorÌa, Absentismo, etc.).</p>
+					    			    			<p class="help-block">El m√≥dulo de Faltas gestiona las asistencia de los alumnos. Permite registrar las ausencias diarias, al modo de <em>iSeneca</em>), que luego podremos gestionar (Consultar, Justificar, crear Informes, enviar SMS, etc.) y subir finalmente a S√©neca. <br>O bien podemos descargar las faltas desde S√©neca para utilizar los m√≥dulos de la aplicaci√≥n basados en faltas de asistencia (Informes de alumnos, Tutor√≠a, Absentismo, etc.).</p>
 					    			    		</label>
 					    			    	</div>
 					    			    </div>
 				    			    	
-				    			    	<div class="alert alert-warning">Este mÛdulo depende del mÛdulo de Horarios. Si decide utilizarlo se activar· el mÛdulo de Horarios autom·ticamente.</div>
+				    			    	<div class="alert alert-warning">Este m√≥dulo depende del m√≥dulo de Horarios. Si decide utilizarlo se activar√° el m√≥dulo de Horarios autom√°ticamente.</div>
 				    			    	
 				    			    </div>
 				    			    
 				    			    
-				    			    <!-- M”DULO: HORARIOS -->
+				    			    <!-- M√ìDULO: HORARIOS -->
 				    			    <div role="tabpanel" class="tab-pane" id="mod_horarios">
 				    			    	
 				    			    	<div class="form-group">
@@ -871,7 +871,7 @@ if (isset($_POST['instalar']))
 					    			    		<label>
 					    			    			<input type="checkbox" id="check_horarios" name="mod_horarios" value="1">
 					    			    			<strong>Horarios</strong>
-					    			    			<p class="help-block">Si disponemos de un archivo de Horario en formato XML (como el que se utiliza para subir a SÈneca) o DEL (como el que genera el programa Horw) para importar sus datos a la Intranet. Aunque no obligatoria, esta opciÛn es necesaria si queremos hacernos una idea de todo lo que la aplicaciÛn puede ofrecer.</p>
+					    			    			<p class="help-block">Si disponemos de un archivo de Horario en formato XML (como el que se utiliza para subir a S√©neca) o DEL (como el que genera el programa Horw) para importar sus datos a la Intranet. Aunque no obligatoria, esta opci√≥n es necesaria si queremos hacernos una idea de todo lo que la aplicaci√≥n puede ofrecer.</p>
 					    			    		</label>
 					    			    	</div>
 					    			    </div>
@@ -879,15 +879,15 @@ if (isset($_POST['instalar']))
 				    			    </div>
 				    			    
 				    			    
-				    			    <!-- M”DULO: MATRICULACI”N -->
+				    			    <!-- M√ìDULO: MATRICULACI√ìN -->
 				    			    <div role="tabpanel" class="tab-pane" id="mod_matriculacion">
 				    			    	
 				    			    	<div class="form-group">
 					    			    	<div class="checkbox">
 					    			    		<label>
 					    			    			<input type="checkbox" name="mod_matriculacion" value="1">
-					    			    			<strong>MatriculaciÛn</strong>
-					    			    			<p class="help-block">Este mÛdulo permite matricular a los alumnos desde la propia aplicaciÛn o bien desde la p·gina p˙blica del Centro. Requiere que cada Centro personalice las materias y optativas que va a ofrecer a sus Alumnos.</p>
+					    			    			<strong>Matriculaci√≥n</strong>
+					    			    			<p class="help-block">Este m√≥dulo permite matricular a los alumnos desde la propia aplicaci√≥n o bien desde la p√°gina p√∫blica del Centro. Requiere que cada Centro personalice las materias y optativas que va a ofrecer a sus Alumnos.</p>
 					    			    		</label>
 					    			    	</div>
 					    			    </div>
@@ -897,7 +897,7 @@ if (isset($_POST['instalar']))
 					    			    		<label>
 					    			    			<input type="checkbox" name="mod_transporte_escolar" value="1">
 					    			    			<strong>Transporte escolar</strong>
-					    			    			<p class="help-block">Activa la selecciÛn de transporte escolar</p>
+					    			    			<p class="help-block">Activa la selecci√≥n de transporte escolar</p>
 					    			    		</label>
 					    			    	</div>
 					    			    </div>
@@ -925,7 +925,7 @@ if (isset($_POST['instalar']))
 				    		<h3 class="text-center text-success">Instalando la Intranet&hellip;</h3>
 				    		
 				    		<br>
-				    		<p class="text-center" style="font-size: 1.12em;">Este proceso puede tardar unos segundos.<br>No cierre esta p·gina mientras se est· instalando.</p>
+				    		<p class="text-center" style="font-size: 1.12em;">Este proceso puede tardar unos segundos.<br>No cierre esta p√°gina mientras se est√° instalando.</p>
 				    		
 				    	</div>
 				    			    	
@@ -957,7 +957,7 @@ if (isset($_POST['instalar']))
 				    		<h3 class="text-center text-success">La Intranet ha sido instalada correctamente</h3>
 				    		
 				    		<br>
-				    		<p class="text-center" style="font-size: 1.12em;">Inicie sesiÛn como Administrador para continuar con la importaciÛn de los datos de SÈneca.<br>En el men˙ de la p·gina principal encontrar· el enlace <em>AdministraciÛn de la Intranet</em>, lea atentamente las instrucciones que aparecen para la puesta en marcha de la aplicaciÛn. Haga click en el botÛn Iniciar sesiÛn y utilice el usuario <strong>admin</strong> y la siguiente contraseÒa:</p>
+				    		<p class="text-center" style="font-size: 1.12em;">Inicie sesi√≥n como Administrador para continuar con la importaci√≥n de los datos de S√©neca.<br>En el men√∫ de la p√°gina principal encontrar√° el enlace <em>Administraci√≥n de la Intranet</em>, lea atentamente las instrucciones que aparecen para la puesta en marcha de la aplicaci√≥n. Haga click en el bot√≥n Iniciar sesi√≥n y utilice el usuario <strong>admin</strong> y la siguiente contrase√±a:</p>
 				    		
 				    		<div class="text-center">
 				    			<code class="text-center lead"><?php echo $pass_admin; ?></code>
@@ -966,7 +966,7 @@ if (isset($_POST['instalar']))
 				    		<br><br>
 				    		
 				    		<div class="text-center">
-				    			<a href="../index.php" class="btn btn-primary">Iniciar sesiÛn</a>
+				    			<a href="../index.php" class="btn btn-primary">Iniciar sesi√≥n</a>
 				    		</div>
 				    		<?php endif; ?>
 				    		
@@ -994,7 +994,7 @@ if (isset($_POST['instalar']))
 			<hr>
 			
 			<p class="text-center">
-				<small class="text-muted">VersiÛn <?php echo INTRANET_VERSION; ?> - &copy; <?php echo date('Y'); ?> <span id="copyright">IESMonterroso</span></small><br>
+				<small class="text-muted">Versi√≥n <?php echo INTRANET_VERSION; ?> - &copy; <?php echo date('Y'); ?> <span id="copyright">IESMonterroso</span></small><br>
 				<small class="text-muted">Este programa es software libre, liberado bajo la GNU General Public License.</small>
 			</p>
 			<p class="text-center">
