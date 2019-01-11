@@ -202,7 +202,10 @@ if ($servicio) {
 </small>
 </h2>
 </div>
-
+<?php
+// CONSULTA DE NORMAS DE USO DE LAS DISTINTAS DEPENDENCIAS
+if (file_exists('normas_dependencias.php') && $_SERVER['SERVER_NAME']=="maralboran.eu") {
+	include('normas_dependencias.php'); }?>
 <?php if (isset($mens)): ?> <?php if ($mens == 'actualizar'): ?>
 <div class="alert alert-success">La reserva se ha actualizado
 correctamente.</div>
