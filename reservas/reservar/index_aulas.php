@@ -394,9 +394,11 @@ a_grupo not like 'G%'";
 		{
 			echo "<label>".$i."ª hora</label>";
 		if (strlen($grupo_aula)>0) {
+			
 			if ($esTIC) {
 				echo "<p class=\"help-block text-info\">Asignada por horario</p>";
 			}
+			
 			else {
 				echo "<select name=\"day_event$i\" class='form-control'>";
 				echo "<option value=\"".$grupo_aula."\" selected>Asignada por Horario: $grupo_aula</option>";
