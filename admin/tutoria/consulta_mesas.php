@@ -29,6 +29,11 @@ mysqli_query($db_con, "CREATE TABLE IF NOT EXISTS `puestos_alumnos` (
   `estructura` varchar(10) COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`unidad`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci");
+//Si no existe la columna 'estructura' la creo
+$col = mysqli_query($db_con, "SELECT `estructura` FROM `puestos_alumnos`");
+if (!$col){
+	mysqli_query($db_con, "ALTER TABLE `puestos_alumnos` ADD `estructura` varchar(10) COLLATE utf8_general_ci NOT NULL");
+}
 // ESTRUCTURA DE LA CLASE, SE AJUSTA AL NUMERO DE ALUMNOS
 $result = mysqli_query($db_con, "SELECT apellidos, nombre, claveal FROM alma WHERE unidad='".$_SESSION['mod_tutoria']['unidad']."' ORDER BY apellidos ASC, nombre ASC");
 $n_alumnos = mysqli_num_rows($result);
