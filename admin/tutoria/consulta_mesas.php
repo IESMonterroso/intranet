@@ -1,47 +1,53 @@
-﻿<?php
+<?php
 require('../../bootstrap.php');
 if (file_exists('config.php')) {
 	include('config.php');
-}
+	}
 acl_acceso($_SESSION['cargo'], array(1, 2, 8));
 // COMPROBAMOS SI ES EL TUTOR, SI NO, ES DEL EQ. DIRECTIVO U ORIENTADOR
 if (stristr($_SESSION['cargo'],'2') == TRUE) {
 	$_SESSION['mod_tutoria']['tutor']  = $_SESSION['mod_tutoria']['tutor'];
 	$_SESSION['mod_tutoria']['unidad'] = $_SESSION['mod_tutoria']['unidad'];
-}
+	}
 else {
 	if(isset($_POST['tutor'])) {
 		$exp_tutor = explode('==>', $_POST['tutor']);
 		$_SESSION['mod_tutoria']['tutor'] = trim($exp_tutor[0]);
 		$_SESSION['mod_tutoria']['unidad'] = trim($exp_tutor[1]);
-		$_SESSION['mesas']['estructura'] = '';
 	}
 	else{
 		if (!isset($_SESSION['mod_tutoria'])) {
 			header('Location:'.'tutores.php');
+			}
 		}
 	}
-}
 // TABLA DE PUESTOS
 mysqli_query($db_con, "CREATE TABLE IF NOT EXISTS `puestos_alumnos` (
-  `unidad` varchar(10) COLLATE utf8_general_ci NOT NULL,
-  `puestos` text COLLATE utf8_general_ci,
-  `estructura` varchar(10) COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`unidad`)
+`unidad` varchar(10) COLLATE utf8_general_ci NOT NULL,
+`puestos` text COLLATE utf8_general_ci,
+`estructura` varchar(10) COLLATE utf8_general_ci NOT NULL,
+PRIMARY KEY (`unidad`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci");
+
+//Si no existe la columna 'estructura' la creo
+$col = mysqli_query($db_con, "SELECT `estructura` FROM `puestos_alumnos`");
+if (!$col){
+	mysqli_query($db_con, "ALTER TABLE `puestos_alumnos` ADD `estructura` varchar(10) COLLATE utf8_general_ci NOT NULL");
+}
+
 // ESTRUCTURA DE LA CLASE, SE AJUSTA AL NUMERO DE ALUMNOS
 $result = mysqli_query($db_con, "SELECT apellidos, nombre, claveal FROM alma WHERE unidad='".$_SESSION['mod_tutoria']['unidad']."' ORDER BY apellidos ASC, nombre ASC");
 $n_alumnos = mysqli_num_rows($result);
 mysqli_free_result($result);
 if(isset($_POST['estructura'])){
-		$_SESSION['mesas']['estructura'] = $_POST['estructura'];
-}
+	$_SESSION['mesas']['estructura'] = $_POST['estructura'];
+	}
 if ($_SESSION['mesas']['estructura']==''){
-if ($n_alumnos <= 36) $_SESSION['mesas']['estructura'] = '222';
-elseif ($n_alumnos > 36 && $n_alumnos <= 42) $_SESSION['mesas']['estructura'] = '232';
-elseif ($n_alumnos > 42) $_SESSION['mesas']['estructura'] = '242';
+	if ($n_alumnos <= 36) $_SESSION['mesas']['estructura'] = '222';
+	elseif ($n_alumnos > 36 && $n_alumnos <= 42) $_SESSION['mesas']['estructura'] = '232';
+	elseif ($n_alumnos > 42) $_SESSION['mesas']['estructura'] = '242';
 }
-function obtenerAlumno($var_nie, $var_grupo) {
+function obtenerAlumno($var_nie, $var_grupo){
 	global $db_con;
 	$result = mysqli_query($db_con, "SELECT `apellidos`, `nombre` FROM `alma` WHERE `unidad` = '".$var_grupo."' AND `claveal` = '".$var_nie."' ORDER BY `apellidos` ASC, `nombre` ASC LIMIT 1");
 	if (mysqli_num_rows($result)) {
@@ -50,22 +56,23 @@ function obtenerAlumno($var_nie, $var_grupo) {
 		return $row['apellidos'].', '.$row['nombre'];
 	}
 	else {
-		return '';;
+		return '';
 	}
 }
+
 // ACTUALIZAR PUESTOS
 if (isset($_POST['listOfItems'])){
 	$result_update = mysqli_query($db_con, "UPDATE puestos_alumnos SET estructura='".$_SESSION['mesas']['estructura']."',puestos='".$_POST['listOfItems']."' WHERE unidad='".$_SESSION['mod_tutoria']['unidad']."'");
 	if(! $result_update) $msg_error = "La asignación de puestos en el aula no se ha podido actualizar. Error: ".mysqli_error($db_con);
 	else $msg_success = "La asignación de puestos en el aula se ha actualizado correctamente.";
 }
+
 // OBTENEMOS LOS PUESTOS, SI NO EXISTE LOS CREAMOS
 $result = mysqli_query($db_con, "SELECT * FROM puestos_alumnos WHERE unidad='".$_SESSION['mod_tutoria']['unidad']."' LIMIT 1");
 if (! mysqli_num_rows($result)) {
 	$estructura_reg = '';
 	$result_insert = mysqli_query($db_con, "INSERT INTO puestos_alumnos (unidad, puestos, estructura) VALUES ('".$_SESSION['mod_tutoria']['unidad']."', '','".$_SESSION['mesas']['estructura']."')");
 	if(! $result_insert) $msg_error = "La asignación de puestos en el aula no se ha podido guardar. Error: ".mysqli_error($db_con);
-	//else $msg_success = "La asignación de puestos en el aula se ha guardado correctamente.";
 }
 else {
 	$row = mysqli_fetch_array($result);
@@ -86,13 +93,11 @@ foreach ($matriz_puestos as $value) {
 		$con_puesto[$los_puestos[0]] = $los_puestos[1];
 	}
 }
+if ($_SESSION['mesas']['estructura'] == '242') {$mesas_col = 9; $mesas = 48; $col_profesor = 9;}
+if ($_SESSION['mesas']['estructura'] == '232') { $mesas_col = 8; $mesas = 42; $col_profesor = 8;}
+if ($_SESSION['mesas']['estructura'] == '222') { $mesas_col = 7; $mesas = 36; $col_profesor = 7;}
 include("../../menu.php");
-include("menu.php");
-if ($_SESSION['mesas']['estructura'] == '242') { $mesas_col = 9; $mesas = 48; $col_profesor = 9; }
-if ($_SESSION['mesas']['estructura'] == '232') { $mesas_col = 8; $mesas = 42; $col_profesor = 8; }
-if ($_SESSION['mesas']['estructura'] == '222') { $mesas_col = 7; $mesas = 36; $col_profesor = 7; }
 ?>
-
 	<style class="text/css">
 	table tr td {
 		vertical-align: top;
@@ -162,12 +167,11 @@ if ($_SESSION['mesas']['estructura'] == '222') { $mesas_col = 7; $mesas = 36; $c
 		font-size: 0.8em;
 	}
 	</style>
-
 	<div class="container">
 
 		<!-- TITULO DE LA PAGINA -->
 		<div class="page-header">
-			<h2>Tutoría de <?php echo $_SESSION['mod_tutoria']['unidad']; ?> <small>Asignación de mesas en aula habitual</small></h2>
+			<h2>Tutoría de <?php echo $_SESSION['mod_tutoria']['unidad']; ?> <small>Asignación de mesas en el aula</small></h2>
 			<h4 class="text-info">Tutor/a: <?php echo nomprofesor($_SESSION['mod_tutoria']['tutor']); ?></h4>
 		</div>
 
@@ -277,10 +281,8 @@ if ($_SESSION['mesas']['estructura'] == '222') { $mesas_col = 7; $mesas = 36; $c
 
 	</div><!-- /.container -->
 
-
 <?php include("../../pie.php"); ?>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	/************************************************************************************************************
 	(C) www.dhtmlgoodies.com, November 2005
 	Update log:
@@ -530,7 +532,7 @@ if ($_SESSION['mesas']['estructura'] == '222') { $mesas_col = 7; $mesas = 36; $c
 			}
 		}
 		saveString = saveString + ";";
-	document.forms['myForm'].listOfItems.value = saveString;
+		document.forms['myForm'].listOfItems.value = saveString;
 		document.getElementById('saveContent').innerHTML = '<h1>Ready to save these nodes:</h1> ' + saveString.replace(/;/g,';<br>') + '<p>Format: ID of ul |(pipe) ID of li;(semicolon)</p><p>You can put these values into a hidden form fields, post it to the server and explode the submitted value there</p>';
 	}
 	function initDragDropScript()
@@ -538,7 +540,7 @@ if ($_SESSION['mesas']['estructura'] == '222') { $mesas_col = 7; $mesas = 36; $c
 		dragContentObj = document.getElementById('dragContent');
 		dragDropIndicator = document.getElementById('dragDropIndicator');
 		dragDropTopContainer = document.getElementById('dhtmlgoodies_dragDropContainer');
-		document.documentElement.onselectstart = cancelEvent;;
+		document.documentElement.onselectstart = cancelEvent;
 		var listItems = dragDropTopContainer.getElementsByTagName('LI');	// Get array containing all <LI>
 		var itemHeight = false;
 		for(var no=0;no<listItems.length;no++){
@@ -577,6 +579,6 @@ if ($_SESSION['mesas']['estructura'] == '222') { $mesas_col = 7; $mesas = 36; $c
 	}
 	window.onload = initDragDropScript;
 	</script>
-
+	
 </body>
 </html>
