@@ -106,7 +106,7 @@ function ft_settings_external_load() {
     $ft["settings"]["ADVANCEDACTIONS"]   = FALSE; // Set to TRUE to enable advanced actions like chmod and symlinks.
   }
   // Permisos de todos los profesores para la carpeta de su departamento
-  elseif (! acl_permiso($_SESSION['cargo'], array('1')) && ($depto_profesor == $dir || $depto_profesor_sin_tildes == $dir)) {
+  elseif (! acl_permiso($_SESSION['cargo'], array('1')) && (strpos("-".$dir, $depto_profesor) == 1 || strpos("-".$dir, $depto_profesor_sin_tildes) == 1)) {
     $ft["settings"]["UPLOAD"]            = TRUE; // Set to FALSE if you want to disable file uploads.
     $ft["settings"]["CREATE"]            = TRUE; // Set to FALSE if you want to disable file/folder/url creation.
     $ft["settings"]["FILEACTIONS"]       = TRUE; // Set to FALSE if you want to disable file actions (rename, move, delete, edit, duplicate).
