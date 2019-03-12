@@ -296,25 +296,25 @@ $result2 = mysqli_query($db_con,$aula_res2); ?>
 		//Nombre del día
 		if (mysqli_num_rows($eventExec) == 1)
 		{
-			if ($event_event1 !== "") {
+			if ($event_event1 !== "" && substr($event_event1,-1)!==")") {
 				echo "<p>1ª hora: $event_event1</p>";
 			}
-			if ($event_event2 !== "") {
+			if ($event_event2 !== "" && substr($event_event2,-1)!==")") {
 				echo "<p>2ª hora: $event_event2</p>";
 			}
-			if ($event_event3 !== "") {
+			if ($event_event3 !== "" && substr($event_event3,-1)!==")") {
 				echo "<p>3ª hora: $event_event3</p>";
 			}
-			if ($event_event4 !== "") {
+			if ($event_event4 !== "" && substr($event_event4,-1)!==")") {
 				echo "<p>4ª hora: $event_event4</p>";
 			}
-			if ($event_event5 !== "") {
+			if ($event_event5 !== "" && substr($event_event5,-1)!==")") {
 				echo "<p>5ª hora: $event_event5</p>";
 			}
-			if ($event_event6 !== "") {
+			if ($event_event6 !== "" && substr($event_event6,-1)!==")") {
 				echo "<p>6ª hora: $event_event6</p>";
 			}
-			if ($event_event7 !== "") {
+			if ($event_event7 !== "" && substr($event_event7,-1)!==")") {
 				echo "<p>7ª hora: $event_event7</p>";
 			}
 		}
