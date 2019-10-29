@@ -138,10 +138,10 @@ $val_nivel=substr($valor,0,1);
 $pend = mysqli_query($db_con, "select distinct pendientes.claveal, alma.apellidos, alma.nombre, matriculas from pendientes, alma where pendientes.claveal=alma.claveal and alma.unidad = '$valor' order by apellidos, nombre");
 $n1="";
 while ($pendi = mysqli_fetch_array($pend)) {
-	$uni = mysqli_query($db_con, "select combasi from alma where claveal = '$pendi[0]' and (combasi like '%143727%' or combasi like '%143733%')");
+	$uni = mysqli_query($db_con, "select combasi from alma where claveal = '$pendi[0]'");
 	if (mysqli_num_rows($uni)>0) {}
 			else{
-	if ($pendi[4]>1) {
+	if ($pendi[3]>1) {
 			$rep = " (Rep.)";
 		}
 		else{
