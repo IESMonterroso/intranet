@@ -9,6 +9,8 @@ if (file_exists('config.php')) {
 // Obtenemos los datos de la incidencia si se trata de una actualización de datos
 if (isset($_GET['id']) && intval($_GET['id'])) {
     $id_ticket = $_GET['id'];
+	
+    $id_ticket = preg_replace('([^0-9])', '', $id_ticket);
 
     $result = mysqli_query($db_con, "SELECT `fecha`, `solicitante`, `dependencia`, `problema`, `descripcion`, `estado`, `numincidencia`, `resolucion` FROM `incidencias_tic` WHERE `id` = $id_ticket LIMIT 1") or die (mysqli_error($db_con));
     if (! mysqli_num_rows($result)) {
