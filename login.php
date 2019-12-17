@@ -240,7 +240,8 @@ if (isset($_POST['submit']) and ! ($_POST['idea'] == "" or $_POST['clave'] == ""
 		else {
 
 			if ($_SESSION['intentos'] > 4) {
-				mysqli_query($db_con, "UPDATE c_profes SET estado=1 WHERE idea='".$_POST['idea']."' LIMIT 1");
+				$idea_usr = preg_replace('([^A-Za-z0-9])', '', $_POST['idea']);
+				mysqli_query($db_con, "UPDATE c_profes SET estado=1 WHERE idea='".$idea_usr."' LIMIT 1");
 
 				if (stristr($profe, ', ') == true) {
 					$exp_profe = explode(', ', $profe);
