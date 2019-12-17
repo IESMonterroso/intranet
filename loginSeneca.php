@@ -28,7 +28,8 @@ if (isset($_SESSION['profi'])) {
 
 // Entramos
 if (isset($_POST['submit']) && ! (strlen($_POST['USUARIO']) < 5 || strlen($_POST['CLAVE']) < 6)) {
-	$cmp_idea = trim(htmlspecialchars($_POST['USUARIO']));
+	$cmp_idea = preg_replace('([^A-Za-z0-9])', '', trim(htmlspecialchars($_POST['USUARIO'])));
+	
 	$cmp_clave = htmlspecialchars($_POST['CLAVE']);
 	$hash_clave = sha1($cmp_clave);
 	$cmp_clavecifrada = trim($_POST['CLAVECIFRADA']);
