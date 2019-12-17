@@ -21,7 +21,11 @@ if (isset($_POST['submit'])) {
 	$codigo2 = $_POST['codigo2'];
 	$codigo3 = $_POST['codigo3'];
 	$correo  = $_POST['correo'];
+	if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    		$correo = 'NULL'; //Comment: ADD HERE AN ALERT OR SOMETHING ALERTING USER EMAIL IS NOT VALID
+	}
 	$movil  = (isset($_POST['movil']) && ! empty($_POST['movil'])) ? $_POST['movil'] : '';
+	$movil = preg_replace('([^0-9])', '', $movil);
 	$mostrar_nombre = (isset($_POST['mostrar_nombre']) && $_POST['mostrar_nombre'] == 1) ? 1 : 0;
 
 	$codigo2_has_error = 0;
