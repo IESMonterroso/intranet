@@ -24,8 +24,10 @@ mysqli_query($db_con,"SET NAMES 'utf8'");
 if (isset($_POST['submit']) and ! ($_POST['idea'] == "" or $_POST['clave'] == "")) {
 	$clave0 = $_POST['clave'];
 	$clave = sha1 ( $_POST['clave'] );
+	
+	$idea_usr = preg_replace('([^A-Za-z0-9])', '', $_POST['idea']);
 
-	$pass0 = mysqli_query($db_con, "SELECT c_profes.pass, c_profes.profesor , departamentos.dni, c_profes.estado, c_profes.correo, c_profes.telefono, c_profes.totp_secret FROM c_profes, departamentos where c_profes.profesor = departamentos.nombre and c_profes.idea = '".$_POST['idea']."' LIMIT 1");
+	$pass0 = mysqli_query($db_con, "SELECT c_profes.pass, c_profes.profesor , departamentos.dni, c_profes.estado, c_profes.correo, c_profes.telefono, c_profes.totp_secret FROM c_profes, departamentos where c_profes.profesor = departamentos.nombre and c_profes.idea = '".$idea_usr."' LIMIT 1");
 	$usuarioExiste = mysqli_num_rows($pass0);
 
 	$pass1 = mysqli_fetch_array($pass0);
