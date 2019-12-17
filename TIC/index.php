@@ -5,10 +5,18 @@ require('inc_variables.php');
 if (file_exists('config.php')) {
 	include('config.php');
 }
+
+$id = $_GET['id'];
+$estado = $_GET['estado'];
+
+$id = preg_replace('([^0-9])', '', $id);
+
+$estado = preg_replace('([^A-Za-z0-9])', '', $estado);
+
 // Cambio de estado rápido y eliminado
 if (acl_permiso($_SESSION['cargo'], array('1')) || (isset($config['tic']['coordinador']) && $pr == $config['tic']['coordinador']) || $_SESSION['dpt'] == 'Servicio Técnico y/o Mantenimiento') {
-    if (isset($_GET['id']) && intval($_GET['id']) && isset($_GET['estado']) && intval($_GET['estado'])) {
-        $result = mysqli_query($db_con, "UPDATE `incidencias_tic` SET `estado` = '".$_GET['estado']."' WHERE `id` = '".$_GET['id']."' LIMIT 1");
+    if (isset($_GET['id']) && intval($id) && isset($_GET['estado']) && intval($estado)) {
+        $result = mysqli_query($db_con, "UPDATE `incidencias_tic` SET `estado` = '".$estado."' WHERE `id` = '".$id."' LIMIT 1");
         if (! $result) {
             $msg_error = true;
             $msg_error_text = "Ha ocurrido un error al actualizar el estado de la incidencia. Error: ".mysqli_error($db_con);
@@ -19,8 +27,8 @@ if (acl_permiso($_SESSION['cargo'], array('1')) || (isset($config['tic']['coordi
         }
     }
 
-    if (isset($_GET['id']) && intval($_GET['id']) && isset($_GET['accion']) && $_GET['accion'] == 'eliminar') {
-        $result = mysqli_query($db_con, "DELETE FROM `incidencias_tic` WHERE `id` = '".$_GET['id']."' LIMIT 1");
+    if (isset($_GET['id']) && intval($id) && isset($_GET['accion']) && $_GET['accion'] == 'eliminar') {
+        $result = mysqli_query($db_con, "DELETE FROM `incidencias_tic` WHERE `id` = '".$id."' LIMIT 1");
         if (! $result) {
             $msg_error = true;
             $msg_error_text = "Ha ocurrido un error al eliminar la incidencia. Error: ".mysqli_error($db_con);
@@ -34,13 +42,13 @@ if (acl_permiso($_SESSION['cargo'], array('1')) || (isset($config['tic']['coordi
 }
 else {
 	// Eliminado de incidencias para profesores
-	if (isset($_GET['id']) && intval($_GET['id']) && isset($_GET['accion']) && $_GET['accion'] == 'eliminar') {
-			$result = mysqli_query($db_con, "SELECT `estado`, `solicitante` FROM `incidencias_tic` WHERE `id` = '".$_GET['id']."' LIMIT 1");
+	if (isset($_GET['id']) && intval($id) && isset($_GET['accion']) && $_GET['accion'] == 'eliminar') {
+			$result = mysqli_query($db_con, "SELECT `estado`, `solicitante` FROM `incidencias_tic` WHERE `id` = '".$id."' LIMIT 1");
 			$row = mysqli_fetch_array($result);
 
 			if ($row['solicitante'] == $idea) {
 				if ($row['estado'] == 1) {
-					$result = mysqli_query($db_con, "DELETE FROM `incidencias_tic` WHERE `id` = '".$_GET['id']."' LIMIT 1");
+					$result = mysqli_query($db_con, "DELETE FROM `incidencias_tic` WHERE `id` = '".$id."' LIMIT 1");
 					if (! $result) {
 							$msg_error = true;
 							$msg_error_text = "Ha ocurrido un error al eliminar la incidencia. Error: ".mysqli_error($db_con);
