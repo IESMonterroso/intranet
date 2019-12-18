@@ -5,8 +5,8 @@ if (file_exists('config.php')) {
 	include('config.php');
 }
 
-if (isset($_POST['profe'])) $profe = preg_replace('([^A-Za-z0-9])', '', $_POST['profe']);
-if (isset($_POST['curso'])) $curso = preg_replace('([^A-Za-z0-9])', '', $_POST['curso']);
+if (isset($_POST['profe'])) $profe = preg_replace('([^A-Za-z0-9 ])', '', $_POST['profe']);
+if (isset($_POST['curso'])) $curso = preg_replace('([^A-Za-z0-9 ])', '', $_POST['curso']);
 
 
 include("../menu.php");
