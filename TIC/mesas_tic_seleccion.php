@@ -7,8 +7,8 @@ if (file_exists("config.php")) {
 	$esTIC = ($config['tic']['coordinador'] == $_SESSION['profi']) ? 1 : 0;
 }
 
-if (isset($_POST['profesor'])) $profesor = $_POST['profesor']; else $profesor=$_SESSION['profi'];
-if (isset($_POST['actividad'])) $actividad = $_POST['actividad'];
+if (isset($_POST['profesor'])) $profesor = preg_replace('([^A-Za-z0-9 ])', '', $_POST['profesor']); else $profesor=$_SESSION['profi'];
+if (isset($_POST['actividad'])) $actividad = preg_replace('([^A-Za-z0-9 ])', '', $_POST['actividad']);
 
 include("../menu.php");
 include("menu.php");
