@@ -204,7 +204,7 @@ Fuera de horario escolar</h2>
 }
 elseif (!empty($_POST['profe_ausente']) and $_POST['hora_dia']==$_POST['hora_guardia']){
 	//echo "Tarari";
-	$s_profe_ausente = preg_replace('([^A-Za-z0-9])', '', $_POST['profe_ausente']);
+	$s_profe_ausente = preg_replace('([^A-Za-z0-9 ])', '', $_POST['profe_ausente']);
 	$prof2 = "SELECT distinct c_prof, prof FROM horw where prof = '".$s_profe_ausente."'";
 	$prof20 = mysqli_query($db_con, $prof2);
 	$filaprof2 = mysqli_fetch_array($prof20);
