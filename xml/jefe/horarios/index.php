@@ -2,6 +2,7 @@
 require('../../../bootstrap.php');
 
 function abrevactividad($db_con, $actividad) {
+	$actividad = preg_replace('([^A-Za-z0-9 ])', '', $actividad);
 	$result = mysqli_query($db_con, "SELECT idactividad, nomactividad FROM actividades_seneca WHERE nomactividad = '$actividad'");
 	while ($row = mysqli_fetch_array($result)) {
 		$exp_nomactividad = explode('(', $row['nomactividad']);
@@ -71,6 +72,7 @@ else {
 
 	if ($_POST['profesor']) {
 		$profesor = $_POST['profesor'];
+		$profesor = preg_replace('([^A-Za-z0-9 ])', '', $profesor);
 		$_SESSION['mod_horarios']['profesor'] = $profesor;
 	}
 }
