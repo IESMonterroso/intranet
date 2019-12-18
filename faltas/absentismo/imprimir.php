@@ -6,6 +6,8 @@ $tutor = $_SESSION['profi'];
 
 // PDF
 $mes = $_GET['mes'];
+$mes = preg_replace('([^0-9])', '', $mes);
+
 $fecha2 = date('Y-m-d');
 $hoy = formatea_fecha($fecha);
 include("../../pdf/fpdf.php");
