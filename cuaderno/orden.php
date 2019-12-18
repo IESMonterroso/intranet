@@ -20,9 +20,11 @@ $pr = $_SESSION['profi'];
 
 if (isset($_GET['asignatura'])) {
 	$asignatura = $_GET['asignatura'];
+	$asignatura = preg_replace('([^A-Za-z0-9 ])', '', $asignatura);
 }
 if (isset($_GET['curso'])) {
 	$curso= $_GET['curso'].",";
+	$curso = preg_replace('([^A-Za-z0-9 ])', '', $curso);
 }
 if (isset($_GET['dia'])) {
 	$dia = $_GET['dia'];
