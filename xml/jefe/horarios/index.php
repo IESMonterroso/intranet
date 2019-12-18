@@ -102,7 +102,7 @@ if (isset($_POST['unidad'])) {
 }
 elseif (isset($_GET['unidad']) && $_GET['asignatura'] !== '25' and $_POST['unidad']=="") {
 	$unidad = urldecode($_GET['unidad']);
-
+	$unidad = preg_replace('([^A-Za-z0-9 ])', '', $unidad);
 	// A partir del código de la asignatura y la unidad, descubrimos el curso...
 	$result = mysqli_query($db_con, "SELECT `CURSO` FROM `materias` WHERE `GRUPO` = '$unidad' AND `CODIGO` = '$asignatura' LIMIT 1");
 	if (mysqli_num_rows($result)) {
