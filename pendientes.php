@@ -127,6 +127,7 @@ if(mysqli_num_rows($cal2) > 0)
 // Alumnos expulsados que vuelven
 if (isset($_GET['id_tareas'])) {
 	$id_tareas = $_GET['id_tareas'];
+	$id_tareas = preg_replace('([^0-9])', '', $id_tareas);
 }
 if (isset($_GET['tareas_expulsion'])) {
 	if ($_GET['tareas_expulsion'] == 'Si') {
