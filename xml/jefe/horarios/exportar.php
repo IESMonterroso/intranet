@@ -9,6 +9,7 @@ $actividades_seneca_noregular = array('661','156','289','286','284','5','346','2
 
 if (isset($_POST['idempleado'])) {
 	$post_idempleado = $_POST['idempleado'];
+	$post_idempleado = preg_replace('([^A-Za-z0-9 ])', '', $post_idempleado);
 	$result_empleados = mysqli_query($db_con, "SELECT DISTINCT `c_prof` FROM `horw` WHERE `c_prof` = '$post_idempleado' LIMIT 1");
 
 }
