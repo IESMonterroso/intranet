@@ -16,9 +16,9 @@ include("menu.php");
 if (isset($_POST['nueva'])) {
 	$num = count($_POST);
 	if ($num>1) {
-		$abrev_nueva = $_POST['abrev_nueva'];
-		$nombre_nueva = $_POST['nombre_nueva'];
-		$texto = $_POST['texto'];
+		$abrev_nueva = preg_replace('([^A-Za-z0-9 ])', '', $_POST['abrev_nueva']);
+		$nombre_nueva = preg_replace('([^A-Za-z0-9 ])', '', $_POST['nombre_nueva']);
+		$texto = preg_replace('([^A-Za-z0-9 ])', '', $_POST['texto']);
 		if ($_POST['nueva']=="Crear nueva Aula / Dependencia") {
 			mysqli_query($db_con,"insert into nuevas values ('','$abrev_nueva','$nombre_nueva','$texto')");
 			if (mysqli_affected_rows($db_con)>0) {
@@ -27,7 +27,7 @@ if (isset($_POST['nueva'])) {
 
 			elseif ($_POST['nueva']=="Actualizar datos del Aula / Dependencia") {
 				if (is_numeric($_POST['id'])) {
-					mysqli_query($db_con,"update nuevas set abrev='$abrev_nueva', nombre='$nombre_nueva', texto='$texto' where id = '".$_POST['id']."'");
+					mysqli_query($db_con,"update nuevas set abrev='$abrev_nueva', nombre='$nombre_nueva', texto='$texto' where id = '".preg_replace('([^0-9])', '', $_POST['id'])."'");
 				}
 				else{
 					$tr_h=explode(":",$_POST['id']);
@@ -69,6 +69,10 @@ ahora.<P>
 }
 if (isset($_GET['eliminar'])) {
 	$id = $_GET['id'];
+	if(!is_numeric($id)) {
+		echo("Attack detected!");
+		die();
+	}
 	mysqli_query($db_con,"delete from nuevas where id = '$id'");
 	if (mysqli_affected_rows($db_con)>0) {
 		$msg = "El aula/dependencia ha sido eliminada del sistema de reservas.";
