@@ -78,7 +78,7 @@ if ($n_reg>0) {
 }
 //exit();
 if ($_GET['borrar']=='1') {
-	mysqli_query($db_con, "update departamentos set departamento = '' where departamento = '".$_GET['departament']."'");
+	mysqli_query($db_con, "update departamentos set departamento = '' where departamento = '".preg_replace('([^A-Za-z0-9 ])', '', $_GET['departament'])."'");
 	//echo "update departamentos set departamento = '' where departamento = '".$_GET['departament']."'";
 	echo '<div align="center"><div class="alert alert-success alert-block fade in">
 		            <button type="button" class="close" data-dismiss="alert">&times;</button>
