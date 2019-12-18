@@ -918,6 +918,8 @@ function nombreIniciales($nombre) {
 
 function rgpdNombreProfesor($nombre) {
 	global $db_con;
+	
+	$nombre = preg_replace('([^A-Za-z0-9 ])', '', $nombre);
 
 	$result = mysqli_query($db_con, "SELECT `rgpd_mostrar_nombre` FROM `c_profes` WHERE `profesor` = '$nombre' LIMIT 1");
 	if (mysqli_num_rows($result)) {
