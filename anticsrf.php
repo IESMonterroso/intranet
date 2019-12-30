@@ -11,7 +11,7 @@ CSRF-Tokens Lib for https://github.com/IESMonterroso/intranet
 **/
 
 
-function generateToken($length = 10) {
+function generateToken($length = 50) {
 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
